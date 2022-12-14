@@ -1,6 +1,5 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +11,9 @@ app.use(express.json());
 
 // Static Files
 app.use(express.static('public'));
+
+
+
 
 // Templating Engine
 const handlebars = exphbs.create({ extname: '.hbs', });
