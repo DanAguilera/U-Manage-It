@@ -12,7 +12,18 @@ const port = process.env.PORT || 3030;
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json()); 
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static('public'));
+
+// app.use(express.static('images'));
+app.get('/public', (req,res) => {
+    res.render('public');
+})
+// app.get('/dynamic', (req, res) => {
+//     imageList = [];
+//     imageList.push({ src: 'abastractimg1.jpeg', name:'background'});
+//     res.render('dynamic', { imageList: imageList});
+// })
 
 const handlebars = exphbs.create({ extname: '.hbs', });
 app.engine('.hbs', handlebars.engine);
