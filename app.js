@@ -12,20 +12,13 @@ const port = process.env.PORT || 3030;
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json()); 
 
-// Static Files
 app.use(express.static('public'));
 
-// Templating Engine
 const handlebars = exphbs.create({ extname: '.hbs', });
 app.engine('.hbs', handlebars.engine);
 app.set('view engine', '.hbs');
 
-app.get('', (req,res) => {
-    res.render('home')
-})
-
-const routes = require('./route');
+const routes = require('./server/routes/user');
 app.use('/', routes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
