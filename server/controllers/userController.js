@@ -1,5 +1,6 @@
 
 // const app = require('../../app');
+const { request } = require('express');
 const mysql = require('mysql');
 
 let connection = mysql.createPool({
@@ -9,7 +10,7 @@ let connection = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
-
+// View Users
 exports.view = (req, res) => {
     connection.getConnection((err, connection) => {
         if(err) throw err;
@@ -47,17 +48,23 @@ exports.find = (req, res) => {
         });
     });
 }
+exports.form = (req, res) => {
+    res.render('add-user');
+};
 
+// Add new User
+exports.create = (req, res) => {
+    const { first_name, last_name, email, phone, comments } = req.body;
+    let searchTerm = req.body.search;
+  
+    // User the connection
+    connection.query('INSERT INTO user SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ?', [first_name, last_name, email, phone, comments], (err, rows) => {
+      if (!err) {
+        res.render('add-user', { alert: 'User added successfully.' });
+      } else {
+        console.log(err);
+      }
+      console.log('The data from user table: \n', rows);
+    });
+  } 
 
-
-
-
-
-
-// module.exports = connection;
-// const mysql = require('mysql');
-// const app = require('./app')
-// const index = require('./route')
-// const express = require('express')
-// const session = require('express-session');
-// const exphbs = require('express-handlebars');
