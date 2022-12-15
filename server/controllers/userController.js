@@ -11,23 +11,39 @@ let connection = mysql.createPool({
 });
 
 exports.view = (req, res) => {
-
     connection.getConnection((err, connection) => {
         if(err) throw err;
         console.log('Connected as ID' + connection.threadId)
     
-        connection.query('SELECT * FROM user', (err, rows) => {
+        connection.query('SELECT * FROM user WHERE status = "active"', (err, rows) => {
             connection.release();
-
             if(!err) {
             res.render('home', { rows });
             }
             else {
                 console.log(err);
             }
-
             console.log('The data from user table: \n', rows);
-
+        });
+    });
+}
+// Find user by Search
+exports.find = (req, res) => {
+    connection.getConnection((err, connection) => {
+        if(err) throw err;
+        console.log('Connected as ID' + connection.threadId)
+        
+        let searchTerm = req.body.search;
+        
+        connection.query('SELECT * FROM user WHERE first_name LIKE ? OR last_name LIKE ?', ['%' + searchTerm + '%','%' + searchTerm + '%'] , (err, rows) => {
+            connection.release();
+            if(!err) {
+            res.render('home', { rows });
+            }
+            else {
+                console.log(err);
+            }
+            console.log('The data from user table: \n', rows);
         });
     });
 }
