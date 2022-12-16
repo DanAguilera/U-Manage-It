@@ -2,7 +2,7 @@
 Owner: Daniel
 
   My Projects idea was to make a management database system to store a business's information. The inspiration came from working in the restaruant business and seeing an outdated managing system, so I wanted to create an application in which everything a business owner would need, would be right at their fingertips.
-  The project was supposed to be a group project but due to unforseen circumstances, I was left to take the whole brunt of the work. This project has by far made me a better web developer being that I had to tackle both front-end and back-end all on my own. Thus I can safely argue has made me a better developer and critical thinker. 
+  The project was supposed to be a group project but due to unforseen circumstances, I was left to take the whole brunt of the work. This project has by far made me a better web developer being that I had to tackle both front-end and back-end all on my own. 
    Future goals:
     - To incorporate a log-in page with admin rights.
     - Add a section where the business can add their itemized things onto the site, and from there can basically make an itemized bill through a pdf to be able to mail out.
